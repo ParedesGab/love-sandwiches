@@ -74,7 +74,22 @@ def validate_data(values):
     #(1.1)Return True if our function runs without any errors
     return True
 
+def update_sales_worksheet(data):
+    '''
+    Update sales excel worksheet, add new row with the list data provided.
+    '''
+    print("Updating sales worksheet...\n") #give user some feedback in the terminal
+    sales_worksheet = SHEET.worksheet("sales") #SHEET = GSPREAD_CLIENT.open('love_sandwiches')
+    sales_worksheet.append_row(data)
     
-#Since the code is inside the function, do not forget to call it
+    print("Sales worksheet updated successfully. \n")
+
+#Call the get_sales_data function
 data = get_sales_data()
-print(data)
+#print(data)
+
+sales_data = [int(num) for num in data]
+print(sales_data)
+
+#Call the update_sales_worksheet function
+update_sales_worksheet(sales_data)
