@@ -22,19 +22,30 @@ def get_sales_data():
     """
     Get sales figures input from the user
     """
-    #Instruct the user to provide the sales data
-    print("Please enter sales data from the last market.")
-    print("Data should be six numbers separated by commas.")
-    print("Example: 10,20,30,40,50,60\n") #\n backslash to add an extra line
+    while True:
+        #Instruct the user to provide the sales data
+        print("Please enter sales data from the last market.")
+        print("Data should be six numbers separated by commas.")
+        print("Example: 10,20,30,40,50,60\n") #\n backslash to add an extra line
 
-    data_str = input("Enter your data here: ")
-    #check if we are getting a value --> print(f"The data provided is {data_str}")
+        data_str = input("Enter your data here: ")
+        #check if we are getting a value --> print(f"The data provided is {data_str}")
+        
+        sales_data = data_str.split(",") #This will remove the commas from the string.
+        #print(sales_data) -- sales_data values are strings
+
+        #Call the validate_data function here
+        #validate_data(sales_data)
+
+        #(1.3) If there is no error in the validate data, then the 
+        # while will be broken, with a printed message
+        if validate_data(sales_data) == True:
+            print("Data is valid!\n")
+            break
     
-    sales_data = data_str.split(",") #This will remove the commas from the string.
-    #print(sales_data) -- sales_data values are strings
-
-    #Call the validate_data function here
-    validate_data(sales_data)
+    #The function will return the sales_data value!
+    return sales_data
+        
 
 def validate_data(values):
     """
@@ -42,7 +53,7 @@ def validate_data(values):
     Raises ValueErrors if strings cannot be converted into integers
     or if there aren't exactly 6 values
     """
-    print(f"Validated sales data: {values}")
+    print(f"Validated sales data: {values}\n")
 
     #check if there are exactly 6 values in the data
     #check if these 6 values can be converted into integers
@@ -55,7 +66,12 @@ def validate_data(values):
                 )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again\n")
+        return False  #(1.2)return False in case there is an error
+    
+    #(1.1)Return True if our function runs without any errors
+    return True
 
     
 #Since the code is inside the function, do not forget to call it
-get_sales_data()
+data = get_sales_data()
+print(data)
