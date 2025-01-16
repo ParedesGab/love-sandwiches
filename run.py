@@ -83,7 +83,17 @@ def update_sales_worksheet(data):
     sales_worksheet = SHEET.worksheet("sales") #SHEET = GSPREAD_CLIENT.open('love_sandwiches')
     sales_worksheet.append_row(data)
     
-    pprint("Sales worksheet updated successfully\n")
+    print("Sales worksheet updated successfully.\n")
+
+def update_surplus_worksheet(data):
+    '''
+    Update surplus excel worksheet, add new row with the list data provided.
+    '''
+    print("Updating surplus worksheet...\n") #give user some feedback in the terminal
+    surplus_worksheet = SHEET.worksheet("surplus") #SHEET = GSPREAD_CLIENT.open('love_sandwiches')
+    surplus_worksheet.append_row(data)
+    
+    print("Surplus worksheet updated successfully.\n")
 
 def calculate_surplus_data(sales_row):
      """
@@ -111,6 +121,7 @@ def calculate_surplus_data(sales_row):
      #print(surplus_data)
      return surplus_data
 
+
 def main():
 
     #Call the get_sales_data function
@@ -125,7 +136,9 @@ def main():
 
     #Call the calculate_surplus function
     new_surplus_data = calculate_surplus_data(sales_data)
-    print(new_surplus_data)
+    #print(new_surplus_data)
+
+    update_surplus_worksheet(new_surplus_data)
 
 print("Welcome to love sandwiches data automation\n")
 main()
