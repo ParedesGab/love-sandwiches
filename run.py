@@ -153,6 +153,32 @@ def get_last_5_entries_sales():
     #pprint(columns)
     return columns
 
+def calculate_stock_data(data):
+    """
+    Calculate the average stock for each item type, adding 10%
+    """
+    print("Calculating stock data ...\n")
+
+    new_stock_data = []
+
+    #Iterate through each column in the data (remember that the list values are strings)
+    for column in data:
+        #Iterate through each value and convert it into integers
+        int_column = [int(num) for num in column]
+        
+        #calculate average in each column
+        average_column = sum(int_column) / len(int_column)
+        #print(average_column)
+
+        # stock + 10 %
+        stock_num = average_column*1.1
+        #print(round(stock_num))
+
+        new_stock_data.append(round(stock_num))
+        
+    return new_stock_data
+
+
 def main():
 
     #Call the get_sales_data function
@@ -176,6 +202,10 @@ def main():
 
     sales_columns = get_last_5_entries_sales()
     #pprint(sales_columns)
+
+    stock_data = calculate_stock_data(sales_columns)
+    #print(stock_data)
+    update_worksheet(stock_data,"stock")
 
 print("Welcome to love sandwiches data automation\n")
 main()
