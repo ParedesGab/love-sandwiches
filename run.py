@@ -32,7 +32,7 @@ def get_sales_data():
         print("Data should be six numbers separated by commas.")
         print("Example: 10,20,30,40,50,60\n") #\n backslash to add an extra line
 
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
         #check if we are getting a value --> print(f"The data provided is {data_str}")
         
         sales_data = data_str.split(",") #This will remove the commas from the string.
