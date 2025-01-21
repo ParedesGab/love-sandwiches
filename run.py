@@ -178,8 +178,36 @@ def calculate_stock_data(data):
         
     return new_stock_data
 
+def get_stock_values(data):
+    """
+    Get stock values
+    """
+
+    print("Make the following numbers of sandwiches for next")
+    stock = SHEET.worksheet("stock")
+
+    #One way to do it:
+    # headings = []
+
+    # for ind in range(1,7):
+    #     column = stock.col_values(ind)
+    #     headings.append(column[0])
+    # pprint(headings)
+    # #return columns
+
+    #Shorter way:
+    headings = stock.row_values(1)
+    return headings
+
+def create_dictionary(key, data):
+    return dict(zip(key,data))
+
 
 def main():
+
+    '''
+    Run all program functions
+    '''
 
     #Call the get_sales_data function
     data = get_sales_data()
@@ -205,7 +233,16 @@ def main():
 
     stock_data = calculate_stock_data(sales_columns)
     #print(stock_data)
+
     update_worksheet(stock_data,"stock")
+
+    stock_values = get_stock_values(stock_data)
+    #print(stock_values)
+
+    my_dictionary = create_dictionary(stock_values, stock_data)
+    print(my_dictionary)
 
 print("Welcome to love sandwiches data automation\n")
 main()
+
+
