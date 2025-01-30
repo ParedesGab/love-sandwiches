@@ -13,7 +13,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-#Check if the API is working
+# Check if the API is working
 # sales = SHEET.worksheet('sales')
 # data = sales.get_all_values()
 # print(data) 
